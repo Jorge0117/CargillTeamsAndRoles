@@ -84,9 +84,10 @@ const TeamForm = ({ open, onClose, initialData, showAlert }) => {
       });
   };
 
-  const onFormClose = (result, message) => {
+  const onFormClose = () => {
     setLoading(false);
     setTeamData({ name: "", role: null });
+    setOpenDeleteConfirmation(false)
     setErrors({})
     onClose();
   };

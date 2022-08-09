@@ -11,7 +11,6 @@ class Team(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String())
-    # roles = db.relationship('Role', secondary=TeamRoles)
     role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
     roles = db.relationship("Role")
 

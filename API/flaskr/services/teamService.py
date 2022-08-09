@@ -14,9 +14,6 @@ def getTeam(id):
 
 def createTeam(body):
     team = Team(body['name'])
-    # if('roles' in body):
-    #     roles = [Role.query.get(role) for role in body['roles']]
-    #     team.roles.extend(roles)
     if('role' in body and body['role'] is not None):
         role = Role.query.get(body['role']['id'])
         team.roles = role
@@ -30,9 +27,6 @@ def updateTeam(id, body):
         abort(404)
     if('name' in body):
         team.name = body['name']
-    # if('roles' in body):
-        # roles = [Role.query.get(role) for role in body['roles']]
-        # team.roles.extend(roles)
     if('role' in body and body['role'] is not None):
         role = Role.query.get(body['role']['id'])
         team.roles = role

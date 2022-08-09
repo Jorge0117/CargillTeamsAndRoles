@@ -70,7 +70,8 @@ const RoleForm = ({ open, onClose, initialData, showAlert }) => {
   const onFormClose = () => {
     setLoading(false);
     setRoleData({ name: "" });
-    setErrors({})
+    setOpenDeleteConfirmation(false);
+    setErrors({});
     onClose();
   };
 
@@ -117,7 +118,7 @@ const RoleForm = ({ open, onClose, initialData, showAlert }) => {
           open={openDeleteConfirmation}
           onOk={deleteRole}
           onCancel={() => setOpenDeleteConfirmation(false)}
-          text="Are you sure you want to delete this team?"
+          text="Are you sure you want to delete this role? If a team is assigned to this role it will be removed from that team."
         />
       </Paper>
     </Modal>

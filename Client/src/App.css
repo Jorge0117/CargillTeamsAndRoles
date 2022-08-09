@@ -1,0 +1,46 @@
+.App {
+  text-align: center;
+}
+
+.container {
+  margin: 2rem 6rem 2rem 6rem;
+}
+
+.table-title {
+  color: #2b6777;
+  font-size: 25px;
+  font-weight: bold;
+  display: block;
+  text-align: start;
+}
+
+.table-header-text {
+  color: #fff !important;
+  font-size: 20px !important;
+  background-color: #52ab98 !important;
+}
+
+.table-row {
+  cursor: pointer;
+}
+
+.table-row:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.button {
+  background-color: #2b6777 !important;
+  margin: 1rem 0 1rem 0 !important;
+  text-align: start;
+  display: block !important;
+  height: 36.5px !important;
+}
+
+.modal-style {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  padding: 2rem;
+}

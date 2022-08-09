@@ -1,0 +1,38 @@
+version: '3'
+services:
+
+  teamsroles-db:
+    build: ./DB
+    container_name: teamsroles-db
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=password
+    networks:
+      - teamsroles-network
+
+  teamsroles-be:
+    restart: always
+    build: ./API
+    container_name: teamsroles-be
+    ports:
+      - 5000:5000
+    environment:
+      - DATABASE=teamsroles-db
+    links:
+      - teamsroles-db
+    networks:
+      - teamsroles-network
+
+  teamroles-fe:
+    build: ./Client
+    container_name: teamroles-fe
+    ports:
+      - 3000:3000
+    links:
+      - teamsroles-be
+
+networks:
+  teamsroles-network:
+    external: false
+    name: teamsroles-network

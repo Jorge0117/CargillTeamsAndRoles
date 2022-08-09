@@ -1,0 +1,282 @@
+    openapi: 3.0.0
+    info:
+      title: Teams and Roles
+    servers:
+      - url: http://localhost:5000
+    paths:
+      # Teams paths
+      /teams:
+        get:
+          summary: Returns a list of teams.
+          tags:
+            - Teams
+          responses:
+            '200':
+              description: A JSON array of teams
+              content:
+                application/json:
+                  schema: 
+                    type: array
+                    items: 
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        name:
+                          type: string
+                        role:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                            name:
+                              type: string
+        post:
+          summary: Adds a new team.
+          tags:
+            - Teams
+          requestBody:
+            required: true
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    role:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+          responses:
+            '201':
+              description: Created
+              content:
+                application/json:
+                  schema:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      name:
+                        type: string
+                      role:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                          name:
+                            type: string
+      /teams/{id}:
+        get:
+          summary: Returns a team based on its id.
+          tags:
+            - Teams
+          parameters:
+            - name: id
+              in: path
+              required: true
+              description: Id of the requested team.
+              schema:
+                type: integer
+                minimun: 1
+          responses:
+            '200':
+              description: An object with the requested team
+              content:
+                application/json:
+                  schema:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      name:
+                        type: string
+                      role:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                            name:
+                              type: string
+        patch:
+          summary: Updates an existing team.
+          tags:
+            - Teams
+          parameters:
+            - name: id
+              in: path
+              required: true
+              description: Id of the team to update.
+              schema:
+                type: integer
+                minimun: 1
+          requestBody:
+            required: true
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    role:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+          responses:
+            '200':
+              description: An object with the updated team
+              content:
+                application/json:
+                  schema:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      name:
+                        type: string
+                      role:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                          name:
+                            type: string
+        delete:
+          summary: Deletes an existing team.
+          tags:
+            - Teams
+          parameters:
+            - name: id
+              in: path
+              required: true
+              description: Id of the team to delete.
+              schema:
+                type: integer
+                minimun: 1
+          responses:
+            '200':
+              description: Deleted
+
+      # Roles paths
+      /roles:
+        get:
+          summary: Returns a list of roles.
+          tags:
+            - Roles
+          responses:
+            '200':
+              description: A JSON array of roles
+              content:
+                application/json:
+                  schema: 
+                    type: array
+                    items: 
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        name:
+                          type: string
+        post:
+          summary: Adds a new role.
+          tags:
+            - Roles
+          requestBody:
+            required: true
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+          responses:
+            '201':
+              description: Created
+              content:
+                application/json:
+                  schema:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      name:
+                        type: string
+      /roles/{id}:
+        get:
+          summary: Returns a role based on its id.
+          tags:
+            - Roles
+          parameters:
+            - name: id
+              in: path
+              required: true
+              description: Id of the requested role.
+              schema:
+                type: integer
+                minimun: 1
+          responses:
+            '200':
+              description: An object with the requested role
+              content:
+                application/json:
+                  schema:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      name:
+                        type: string
+        patch:
+          summary: Updates an existing role.
+          tags:
+            - Roles
+          parameters:
+            - name: id
+              in: path
+              required: true
+              description: Id of the role to update.
+              schema:
+                type: integer
+                minimun: 1
+          requestBody:
+            required: true
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+          responses:
+            '200':
+              description: An object with the updated role
+              content:
+                application/json:
+                  schema:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      name:
+                        type: string
+        delete:
+          summary: Deletes an existing role.
+          tags:
+            - Roles
+          parameters:
+            - name: id
+              in: path
+              required: true
+              description: Id of the role to delete.
+              schema:
+                type: integer
+                minimun: 1
+          responses:
+            '200':
+              description: Deleted        
+

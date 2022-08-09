@@ -1,0 +1,15 @@
+# syntax=docker/dockerfile:1
+FROM ubuntu:18.04
+
+RUN apt-get update
+RUN apt-get install -y postgresql postgresql-contrib postgresql-client
+
+USER postgres
+
+
+RUN    /etc/init.d/postgresql start &&\
+    psql --command "CREATE DATABASE CargillApplication;" &&\
+    psql --command "CREATE USER admin WITH PASSWORD 'password';" &&\
+    psql --command "GRANT ALL PRIVILEGES ON DATABASE CargillApplication TO admin;"
+
+CMD ["/usr/lib/postgresql/14/bin/postgres", "-D", "/var/lib/postgresql/14/main", "-c", "config_file=/etc/postgresql/14/main/postgresql.conf"]
